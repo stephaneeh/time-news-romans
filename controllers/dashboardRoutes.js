@@ -46,7 +46,24 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-//create new post post
+// router.put('/:id', withAuth, async (req, res) => {
+//   // update a category by its `id` value
+//   try {
+//     const selectedPost = req.params.id;
+//     const updatedName = req.body.category_name;
+//     const updateById = await Post.update(
+//       { category_name: updatedName },
+//       { where: { id: selectedPost}}
+//     );
+
+//     updateById
+//     res.status(200).json({ message: "Category has been successfully updated" });
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+// });
+
+//delete post
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({

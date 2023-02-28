@@ -1,4 +1,4 @@
-const loginFormHandler = async (event) => {
+const newCommentHandler = async (event) => {
   event.preventDefault();
 
   const comment_text = document
@@ -31,4 +31,4 @@ const loginFormHandler = async (event) => {
 
 document
   .querySelector(".comment-form")
-  .addEventListener("submit", commentFormHandler);
+  .addEventListener("submit", newCommentHandler);

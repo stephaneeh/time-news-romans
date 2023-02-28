@@ -11,22 +11,21 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    comment_text: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "user",
+        key: "id",
+      },
+    },
+    post_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "post",
         key: "id",
       },
     },
