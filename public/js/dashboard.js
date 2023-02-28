@@ -21,6 +21,14 @@ const newFormHandler = async (event) => {
   }
 };
 
+const updateButtonHandler = async (event) => {
+  if (event.target.hasAttribute("data-id")) {
+    const id = event.target.getAttribute("data-id");
+
+    alert("Update post has worked");
+  }
+};
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
@@ -41,6 +49,10 @@ document
   .querySelector(".new-post-form")
   .addEventListener("submit", newFormHandler);
 
-document
-  .querySelector(".post-list")
-  .addEventListener("click", delButtonHandler);
+document.querySelectorAll("#update-btn").forEach((item) => {
+  item.addEventListener("click", updateButtonHandler);
+});
+
+document.querySelectorAll("#delete-btn").forEach((item) => {
+  item.addEventListener("click", delButtonHandler);
+});

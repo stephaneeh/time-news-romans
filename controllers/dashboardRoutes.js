@@ -46,6 +46,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+//create new post post
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({
