@@ -1,10 +1,9 @@
 const router = require("express").Router();
-const sequelize = require("../../config/connection");
-const { Post, User, Comment } = require("../../models");
-const withAuth = require("../../utils/auth");
+const { Post, User, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
 //find all posts that belong to user
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     // Get all posts and JOIN with user data
     const postData = await Post.findAll({
@@ -33,14 +32,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+//create new post post
 router.post("/", withAuth, async (req, res) => {
-  // create a new post
   try {
-    const newPost = await Post.create({
+    const newProject = await Project.create({
       ...req.body,
+      user_id: req.session.user_id,
     });
 
-    res.status(200).json(categoryData);
+    res.status(200).json(newProject);
   } catch (err) {
     res.status(400).json(err);
   }
