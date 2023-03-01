@@ -1,3 +1,5 @@
+{{!-- View Post content (/api/post/{id}) --}}
+
 <div class="text-center">
   <h2>{{title}}</h2>
   <p>{{description}}</p>
@@ -5,19 +7,5 @@
   <p>
     <button class="btn btn-primary">Add a comment!</button>
   </p>
+  {{> comments post.comments}}
 </div>
-
-{{#if comments.length}}
-<div class="comments">
-  {{#each this}}
-  <section class="comment">
-    <div class="meta">
-      {{user.user.name}} on {{format_date created_at}}
-    </div>
-    <div class="text">
-      {{comment_text}}
-    </div>
-  </section>
-  {{/each}}
-</div>
-{{/if}}

@@ -23,9 +23,29 @@ const newFormHandler = async (event) => {
 
 const updateButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
-    const id = event.target.getAttribute("data-id");
+    const title = document.querySelector('input[name="post-title"]').value;
+    const post_content = document.querySelector('input[name="post-content"]')
+      .value;
+    const id = window.location.toString().split("/")[
+      window.location.toString().split("/").length - 1
+    ];
 
-    alert("Update post has worked");
+    const response = await fetch(`/dashboard/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title,
+        post_content,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert(response.statusText);
+    }
   }
 };
 
