@@ -25,7 +25,7 @@
   {{#each comments as |comment| }}
   <div class="card d-flex">
     <div class="row card-body">
-      <div class="col-12">{{comment.comment}} - {{user.name}}</div>
+      <div class="col-12">{{comment.comment}} - {{user.name}} on {{format_date comment.date}}</div>
     </div>
   </div>
   {{/each}}

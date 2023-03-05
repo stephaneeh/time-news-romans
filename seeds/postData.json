@@ -13,5 +13,15 @@
     "title": "Roll 'Em Up",
     "description": "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes.",
     "user_id": 2
+  },
+  {
+    "title": "Firefox isn't a fox!",
+    "description": "It's actually a red panda! Did you know that?",
+    "user_id": 2
+  },
+  {
+    "title": "A woman once accidently cut off two countries from the internet",
+    "description": "In 2011, a 75-year old woman in Georgia was scavenging for copper when she accidentally sliced a cable running to Armenia. Georgia and Armenia saw large portions of outages.",
+    "user_id": 1
   }
 ]

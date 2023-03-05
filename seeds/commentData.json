@@ -1,17 +1,17 @@
 [
   {
-    "comment": "Steph was here!",
-    "user_id": 1,
+    "comment": "Wow this is great news!",
+    "user_id": 3,
     "post_id": 1
   },
   {
-    "comment": "Good job bud!",
-    "user_id": 2,
+    "comment": "What a fantastic post!",
+    "user_id": 1,
     "post_id": 2
   },
   {
-    "comment": "You're so smart!",
-    "user_id": 3,
+    "comment": "This is mind blowing - i can't believe noone told me this!",
+    "user_id": 2,
     "post_id": 3
   }
 ]
