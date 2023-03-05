@@ -2,11 +2,11 @@
 <section class="container my-5 ">
     <section id="header-card" class="col-12 card post-card">
         <section class="header-stripe bg-gradient">
-            <h2>{{post.title}}</h2>
+            <h2>{{updatePost.title}}</h2>
         </section>
         <div class="blog-text">
             <p class="two-columns">
-                {{post.description}}
+                {{updatePost.description}}
             </p>
         </div>
     </section>
@@ -21,16 +21,17 @@
         <form class="form new-post-form">
             <div class="form-group">
                 <label for="post-name">Title:</label>
-                <input class="form-input" type="text" id="update-post-name" name="update-post-name"
-                    placeholder={{post.title}}>
+                <input class="form-control" type="text" id="update-post-title" name="update-post-title"
+                    placeholder={{updatePost.title}}>
             </div>
             <div class="form-group">
                 <label for="post-content">Description:</label>
-                <textarea class="form-input" id="update-post-desc"
-                    name="update-post-desc">{{post.description}}</textarea>
+                <textarea class="form-control" id="update-post-desc"
+                    name="update-post-desc">{{updatePost.description}}</textarea>
             </div>
+            <hr>
             <div class="form-group">
-                <button type="submit" id="submit" class="btn btn-primary" data-id={{post.id}}>Update</button>
+                <button type="submit" id="submit" class="btn btn-primary" data-id={{updatePost.id}}>Update</button>
             </div>
         </form>
     </div>
@@ -38,4 +39,5 @@
 
 
 <script src="/js/editPost.js"></script>
-<script src="/js/comment.js"></script>
+{{!--
+<script src="/js/comment.js"></script> --}}
