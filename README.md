@@ -1,1 +1,1 @@
-# time-news-romans
+# your-tech-news
