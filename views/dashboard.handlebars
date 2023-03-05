@@ -12,15 +12,16 @@
 
         <form class="form new-post-form">
             <div class="form-group">
-                <label for="post-name">post name:</label>
-                <input class="form-input" type="text" id="post-name" name="post-name" />
+                <label for="post-name">Post Title:</label>
+                <input class="form-control" type="text" id="post-name" name="post-name" />
             </div>
             <div class="form-group">
-                <label for="post-desc">description:</label>
-                <textarea class="form-input" id="post-desc" name="post-desc"></textarea>
+                <label for="post-desc">Description:</label>
+                <textarea class="form-control" id="post-desc" name="post-desc"></textarea>
             </div>
+            <hr>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-secondary">Create</button>
             </div>
         </form>
     </div>
@@ -36,10 +37,10 @@
                 <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
             </div>
             <div class="col-md-2" id="update-btn">
-                <button class="btn btn-sm btn-danger" data-id="{{post.id}}">UPDATE</button>
+                <a role="button" class="btn btn-secondary" href="/post/{{post.id}}">UPDATE</a>
             </div>
             <div class="col-md-2" id="delete-btn">
-                <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+                <button class="btn btn-btn-secondary" data-id="{{post.id}}">DELETE</button>
             </div>
         </div>
         {{/each}}

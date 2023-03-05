@@ -1,51 +1,41 @@
-<section>
-    <a class="px-3" href="/dashboard" style="color: black;"> &larr; Back to dashboard</a>
-    <div class="container mt-5 d-flex justify-content-center border border-black" style="background-color: #f7f0e2">
-        <div class="row align-items-center card-body text-center ">
-            <div class="col-12 pt-3">
-                <h2>Edit Post</h2>
-            </div>
-            <div class="col-12">
-                <form class="edit-post-form">
-                    <div class="form-group mt-2">
-                        <label for="post-title">Title</label>
-                        <input class="form-control mt-2" type="text" id="post-title" name="post-title"
-                            value="{{post.title}}" />
-                    </div>
-                    <div class="form-group mt-4">
-                        <label for="post-description">Description</label>
-                        <textarea class="form-control mt-2" id="post-description"
-                            name="post-description">{{post.description}}</textarea>
-                    </div>
-                    <button type="submit" class="btn btn-outline-dark btn-md px-5 mt-4">Save</button>
-                    <button type="button" class="delete-post btn btn-outline-dark btn-md px-5 mt-4">Delete</button>
-                </form>
-            </div>
+{{!-- Blog Post --}}
+<section class="container my-5 ">
+    <section id="header-card" class="col-12 card post-card">
+        <section class="header-stripe bg-gradient">
+            <h2>{{post.title}}</h2>
+        </section>
+        <div class="blog-text">
+            <p class="two-columns">
+                {{post.description}}
+            </p>
         </div>
-    </div>
+    </section>
 </section>
-<section>
-    <div class="container pb-2 justify-content-center">
-        <div class="row align-items-center text-center">
-            <div class="col-12 mt-5">
-                <h3>New comment</h3>
-            </div>
-            <form class="comment-form">
-                <div class="form-group">
-                    <textarea class="form-control" name="comment-body"></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-dark btn-md px-5 mt-4">Add comment</button>
-                </div>
-            </form>
+
+{{!-- Update Post --}}
+<div class="container my-5">
+    <div id="create-card" class="col-9 card dashboard-card mx-auto">
+        <div class="create-stripe">
+            <h3>Update Blog Post:</h3>
         </div>
+        <form class="form new-post-form">
+            <div class="form-group">
+                <label for="post-name">Title:</label>
+                <input class="form-input" type="text" id="update-post-name" name="update-post-name"
+                    placeholder={{post.title}}>
+            </div>
+            <div class="form-group">
+                <label for="post-content">Description:</label>
+                <textarea class="form-input" id="update-post-desc"
+                    name="update-post-desc">{{post.description}}</textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="submit" class="btn btn-primary" data-id={{post.id}}>Update</button>
+            </div>
+        </form>
     </div>
-    </div>
-    <div class="col-12 mt-2">
-        {{> comments post.comments}}
-    </div>
+</div>
 
 
-    <script src="/js/edit-post.js"></script>
-    <script src="/js/delete-post.js"></script>
-    <script src="/js/comment.js"></script>
+<script src="/js/editPost.js"></script>
+<script src="/js/comment.js"></script>

@@ -4,37 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time News Romans!</title>
-    <link rel="stylesheet" href="/css/jass.css">
+    <title>Your Tech News!</title>
+    {{!--
+    <link rel="stylesheet" href="/css/jass.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
-    <div class="flex-column justify-space-around">
-        <header class="display-flex justify-space-between align-center p-2">
-            <h1>
-                <span role="img" aria-label="world">🌏</span>
-                <a href="/">Time News Romans!</a>
-            </h1>
-            <nav>
-                <!-- Conditionally render login or logout links -->
-                {{#if logged_in}}
-                <a href="/dashboard">Dashboard</a> |
-                <button class="no-button" id="logout">logout</button>
-                {{else}}
-                <a href="/login">login</a>
-                {{/if}}
-            </nav>
-        </header>
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <h1>Your Tech News</h1>
+                <section class="d-flex" role="search">
+                    {{#if logged_in}}
+                    <a href="/">Homepage</a> |
+                    <a href="/dashboard">Dashboard</a> |
+                    <button class="no-button" id="logout">Logout</button>
+                    {{else}}
+                    <a href="/login">Login</a>
+                    {{/if}}
+                </section>
+            </div>
+        </nav>
+    </header>
 
-        <main class="container container-fluid mt-5">
-            <!-- Render the sub layout -->
-            {{{ body }}}
-        </main>
+    <main class="container container-fluid mt-5">
+        <!-- Render the sub layout -->
+        {{{ body }}}
+    </main>
 
-        <footer>
+    <footer>
 
-        </footer>
+    </footer>
     </div>
 
     <!-- Render script for logged in users only -->

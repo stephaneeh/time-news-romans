@@ -28,6 +28,30 @@ router.get("/", (req, res) => {
     });
 });
 
+router.put("/:id", withAuth, (req, res) => {
+  Post.update(
+    {
+      title: req.body.title,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((dbPostData) => {
+      if (!dbPostData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(dbPostData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.destroy({
