@@ -1,72 +1,25 @@
 const router = require("express").Router();
-const { Post } = require("../../models");
+const { Post, Comments } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/", (req, res) => {
-  Post.findAll({
-    attributes: ["id", "title", "content", "created_at"],
-    order: [["created_at", "DESC"]],
-    include: [
-      {
-        model: User,
-        attributes: ["username"],
-      },
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-    ],
-  })
-    .then((dbPostData) => res.json(dbPostData.reverse()))
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-// router.put("/:id", withAuth, (req, res) => {
-//   Post.update(
-//     {
-//       title: req.body.title,
-//     },
-//     {
-//       where: {
-//         id: req.params.id,
-//       },
-//     }
-//   )
-//     .then((dbPostData) => {
-//       if (!dbPostData) {
-//         res.status(404).json({ message: "No post found with this id" });
-//         return;
-//       }
-//       res.json(dbPostData);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json(err);
-//     });
-// });
-
-router.delete("/:id", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
+  console.log("inside get comments fnc");
   try {
-    const postData = await Post.destroy({
+    const commentData = await Comments.findAll({
       where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
+        model: Post,
+        attributes: ["id"],
       },
     });
 
-    if (!postData) {
-      res.status(404).json({ message: "No post found with this id!" });
-      return;
-    }
+    // Serialize data so the template can read it
+    const comment = commentData.map((coms) => coms.get({ plain: true }));
 
-    res.status(200).json(postData);
+    // Pass serialized data and session flag into template
+    res.render("post", {
+      comment,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
