@@ -3,10 +3,8 @@ const sequelize = require("../config/connection");
 const Post = require("./Post");
 const User = require("./User");
 
-// DESCRIPTION: Initialize Comments model (table) by extending off Sequelize's Model class
 class Comments extends Model {}
 
-// DESCRIPTION: set up fields and rules for Comments model
 Comments.init(
   {
     id: {

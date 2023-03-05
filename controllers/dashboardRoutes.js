@@ -3,35 +3,30 @@ const { Post, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 //find all posts that belong to user
-router.get("/", withAuth, (req, res) => {
-  Post.findAll({
-    where: {
-      user_id: req.session.user_id,
-    },
-    attributes: ["id", "title", "content", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
+router.get("/", withAuth, async (req, res) => {
+  try {
+    // Get all posts and JOIN with user data
+    const postData = await Post.findAll({
+      where: { user_id: req.session.user_id },
+      include: [
+        {
           model: User,
-          attributes: ["username"],
+          attributes: ["name"],
         },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
-  })
-    .then((dbPostData) => {
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("dashboard", { posts, logged_in: true });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+      ],
     });
+
+    // Serialize data so the template can read it
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render("homepage", {
+      posts,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //create new post post
@@ -48,14 +43,13 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+//update a specific post
 router.put("/:id", withAuth, async (req, res) => {
   // update a category by its `id` value
   try {
-    const selectedPost = req.params.id;
-    const updatedTitle = req.body.title;
     const updateById = await Post.update(
-      { title: updatedTitle },
-      { where: { id: selectedPost } }
+      { title: req.body.title },
+      { where: { id: req.params.id } }
     );
 
     if (!updateById) {
@@ -69,24 +63,24 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-//delete post
 router.delete("/:id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.destroy({
+    const chosenId = req.params.id;
+    const deletePost = await Post.destroy({
       where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
+        id: chosenId,
       },
     });
 
-    if (!postData) {
-      res.status(404).json({ message: "No post found with this id!" });
+    if (!deletePost) {
+      res.status(404).json({ message: "No Post with this id!" });
       return;
     }
 
-    res.status(200).json(postData);
+    deletePost;
+    res.status(200).json({ message: "Post successfully deleted." });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
 
