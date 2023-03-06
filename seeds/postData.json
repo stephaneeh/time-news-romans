@@ -1,20 +1,5 @@
 [
   {
-    "title": "Music Near Me",
-    "description": "A mobile app that will send you notifications whenever a concert is playing in your area.",
-    "user_id": 1
-  },
-  {
-    "title": "The Ultimate Tech Quiz",
-    "description": "A web app that will give users 10 new technical questions each day and track their progress in things like programming, cybersecurity, database architecture, and more!",
-    "user_id": 1
-  },
-  {
-    "title": "Roll 'Em Up",
-    "description": "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes.",
-    "user_id": 2
-  },
-  {
     "title": "Firefox isn't a fox!",
     "description": "It's actually a red panda! Did you know that?",
     "user_id": 2
@@ -23,5 +8,10 @@
     "title": "A woman once accidently cut off two countries from the internet",
     "description": "In 2011, a 75-year old woman in Georgia was scavenging for copper when she accidentally sliced a cable running to Armenia. Georgia and Armenia saw large portions of outages.",
     "user_id": 1
+  },
+  {
+    "title": "The first-ever VCR was the size of a piano.",
+    "description": "When the first VCR (Video Camera Recorder) was made in 1956, it was the size of a piano.",
+    "user_id": 3
   }
 ]
